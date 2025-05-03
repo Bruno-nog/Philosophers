@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/02 15:33:42 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/03 19:21:54 by brunogue         ###   ########.fr       */
+/*   Created: 2025/05/03 19:22:39 by brunogue          #+#    #+#             */
+/*   Updated: 2025/05/03 19:24:28 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int main (int ac, char **av)
+
+bool	check_args(int ac, char **av)
 {
-	if (!check_args(ac, av))
+	if (ac != 5 || ac != 6)
+	{
+		printf("Error, expected 5 or 6 arguments.\n");
 		return (1);
+	}
+	
 }

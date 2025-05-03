@@ -6,7 +6,7 @@
 #    By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 19:01:38 by brunogue          #+#    #+#              #
-#    Updated: 2025/05/01 17:05:04 by brunogue         ###   ########.fr        #
+#    Updated: 2025/05/03 17:45:26 by brunogue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = philosophers
 CC = cc
 RM = rm -f
 
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -pthread -g3
 INCLUDES_DIR = includes
 INCLUDES = -I$(INCLUDES_DIR)
 
