@@ -6,7 +6,7 @@
 #    By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 19:01:38 by brunogue          #+#    #+#              #
-#    Updated: 2025/05/03 17:45:26 by brunogue         ###   ########.fr        #
+#    Updated: 2025/05/07 19:39:06 by brunogue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CFLAGS = -Wall -Wextra -Werror -pthread -g3
 INCLUDES_DIR = includes
 INCLUDES = -I$(INCLUDES_DIR)
 
-SRCS = srcs/main.c
+SRCS = srcs/main.c srcs/utils.c srcs/threads.h
 OBJS = $(SRCS:.c=.o)
 
 %.o: %.c

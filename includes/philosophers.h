@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:34:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/03 17:42:46 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/05/07 17:11:12 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <pthread.h>
-#include <> 
+#include <string.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct s_thread
 {
@@ -40,20 +42,11 @@ typedef struct s_data
 	long long		start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
-	t_thread		*philos
+	t_thread		*philos;
 }	t_data;
 
+int			ft_atoi(char *n);
+bool		init_structs(int ac, char **av, t_data *data);
+bool		check_args(int ac, char **av);
+
 #endif
-
-
-
-t_data *data;
-
-data->nb_philos = ft_atoi(argv[1])
-data->time_to_die = ft_atoi(argv[2])
-data->nb_philos = ft_atoi(argv[3])
-data->nb_philos = ft_atoi(argv[4])
-
-if (argv[5])
-	data->times_must_eat = ft_atoi(argv[5])
-	

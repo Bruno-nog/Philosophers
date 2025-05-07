@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 19:25:28 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/03 19:30:53 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/05/07 17:13:34 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	ft_atoi(char *n)
 
 	res = 0;
 	sign = 1;
-	while (n == ' ' || n == '\t' || n == '\n'
-		|| n == '\v' || n == '\f' || n == '\r')
+	while (*n == ' ' || *n == '\t' || *n == '\n'
+		|| *n == '\v' || *n == '\f' || *n == '\r')
 		n++;
 	if (*n == '-')
 	{
@@ -46,4 +46,19 @@ int	ft_atoi(char *n)
 		res = res * 10 + (*n - '0');
 		n++;
 	}
+	return (res * sign);
+}
+
+bool	check_args(int ac, char **av)
+{
+	(void)av;
+	int	i;
+
+	i = 0;
+	if (ac != 5 && ac != 6)
+	{
+		printf("Error, expected 5 or 6 arguments.\n");
+		return (1);
+	}
+	return (0);
 }
