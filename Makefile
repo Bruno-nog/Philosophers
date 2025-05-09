@@ -6,11 +6,11 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 19:01:38 by brunogue          #+#    #+#              #
-#    Updated: 2025/05/09 19:50:29 by marvin           ###   ########.fr        #
+#    Updated: 2025/05/09 19:54:25 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philO
+NAME = philosophers
 
 CC = cc
 RM = rm -f
