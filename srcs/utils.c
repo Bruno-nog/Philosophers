@@ -6,11 +6,21 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 19:25:28 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/07 17:13:34 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/05/10 12:51:45 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+long long get_time(void)
+{
+	struct timeval	tv;
+	long long		ms;
+
+	gettimeofday(&tv, NULL);
+	ms = (tv.tv_sec * 1000LL) + (tv.tv_usec / 1000);
+	return (ms);
+}
 
 static int	ft_conditions(int result, int sign)
 {
@@ -49,16 +59,15 @@ int	ft_atoi(char *n)
 	return (res * sign);
 }
 
-bool	check_args(int ac, char **av)
+void	smart_sleep(long long duration, t_data *data)
 {
-	(void)av;
-	int	i;
+	long long	start;
 
-	i = 0;
-	if (ac != 5 && ac != 6)
+	start = get_time();
+	while (!data->someone_died)
 	{
-		printf("Error, expected 5 or 6 arguments.\n");
-		return (1);
+		if (get_time() - start >= duration)
+			break ;
+		usleep(100);
 	}
-	return (0);
 }

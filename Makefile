@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 19:01:38 by brunogue          #+#    #+#              #
-#    Updated: 2025/05/09 19:54:25 by marvin           ###   ########.fr        #
+#    Updated: 2025/05/10 18:07:32 by brunogue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CFLAGS = -Wall -Wextra -Werror -pthread -g3
 INCLUDES_DIR = includes
 INCLUDES = -I$(INCLUDES_DIR)
 
-SRCS = srcs/main.c srcs/utils.c srcs/threads.h
+SRCS = srcs/main.c srcs/utils.c srcs/actions.c srcs/cleanup.c srcs/init.c srcs/print.c srcs/simulation.c srcs/threads.h
 OBJS = $(SRCS:.c=.o)
 
 %.o: %.c

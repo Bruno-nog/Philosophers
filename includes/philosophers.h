@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:34:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/07 17:11:12 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/05/10 18:06:01 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <sys/time.h>
+
+typedef struct s_data t_data;
 
 typedef struct s_thread
 {
@@ -26,9 +29,9 @@ typedef struct s_thread
 	int				meals_eaten;
 	long long		last_meal;
 	pthread_t		thread;
-	pthread_mutex_t	l_fork;
-	pthread_mutex_t	r_fork;
-	struct d_data	*data;
+	pthread_mutex_t	*l_fork;
+	pthread_mutex_t	*r_fork;
+	t_data			*data;
 }	t_thread;
 
 typedef struct s_data
@@ -48,5 +51,6 @@ typedef struct s_data
 int			ft_atoi(char *n);
 bool		init_structs(int ac, char **av, t_data *data);
 bool		check_args(int ac, char **av);
+long long get_time(void);
 
 #endif

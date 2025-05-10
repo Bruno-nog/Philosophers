@@ -1,34 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/02 15:33:42 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/10 18:17:48 by brunogue         ###   ########.fr       */
+/*   Created: 2025/05/10 12:44:18 by brunogue          #+#    #+#             */
+/*   Updated: 2025/05/10 12:44:22 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-
-
-int main (int ac, char **av)
-{
-	t_data	*data;
-
-	if (!check_args(ac, av))
-		return (1);
-	data = malloc(sizeof (t_data));
-	if (!data)
-		return (1);
-	if (!init_structs(ac, av, data))
-		return (1);
-	if (!init_data(data))
-		return (0);
-	if (!start_threads(data))
-		return (1);
-	join_threads(data);
-	return (0);
-}
