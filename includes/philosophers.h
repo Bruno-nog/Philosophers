@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:34:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/10 18:06:01 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/05/11 18:07:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,27 @@ typedef struct s_data
 	t_thread		*philos;
 }	t_data;
 
+
+
+//INIT.C
+bool	init_structs(int ac, char **av, t_data *data);
+bool	init_data(t_data *data);
+bool	check_args(int ac, char **av);
+void	*routine(void *arg);
+
+//ACTIONS.C
+//CLEANUP.C
+//PRINT.C
+//SIMULATION.C
+
+//THREADS.G
+bool	start_threads(t_data *data);
+void	join_threads(t_data *data);
+void	print_status(t_thread *ph, const char *msg);
+
+//UTILS.C
 int			ft_atoi(char *n);
-bool		init_structs(int ac, char **av, t_data *data);
-bool		check_args(int ac, char **av);
 long long get_time(void);
+void	smart_sleep(long long duration, t_data *data);
 
 #endif

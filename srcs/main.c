@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:33:42 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/10 18:17:48 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/05/11 17:21:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main (int ac, char **av)
 	if (!init_structs(ac, av, data))
 		return (1);
 	if (!init_data(data))
-		return (0);
+		return (1);
 	if (!start_threads(data))
 		return (1);
 	join_threads(data);

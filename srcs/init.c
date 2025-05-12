@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:44:30 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/10 18:06:01 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/05/11 19:27:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ bool	init_structs(int ac, char **av, t_data *data)
 bool	check_args(int ac, char **av)
 {
 	(void)av;
-	int	i;
 
-	i = 0;
 	if (ac != 5 && ac != 6)
 	{
 		printf("Error, expected 5 or 6 arguments.\n");
@@ -97,7 +95,6 @@ void	*routine(void *arg)
 		pickup_forks(ph);
 		eat(ph);
 		put_down_forks(ph);
-		print_status(ph);
 		print_status(ph, "is sleeping");
 		smart_sleep(ph->data->time_to_sleep, ph->data);
 	}
