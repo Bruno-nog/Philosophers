@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:44:30 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/12 13:56:15 by marvin           ###   ########.fr       */
+/*   Updated: 2025/05/12 19:31:17 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,23 +83,3 @@ bool check_death(t_thread *ph)
     return (false);
 }
 
-void *routine(void *arg)
-{
-    t_thread *ph;
-
-	ph = arg;
-    while (!ph->data->someone_died)
-    {
-        if (check_death(ph))
-            break;
-        print_status(ph, "is thinking");
-        pickup_forks(ph);
-        eat(ph);
-        put_down_forks(ph);
-        print_status(ph, "is sleeping");
-        smart_sleep(ph->data->time_to_sleep, ph->data);
-        if (check_death(ph))
-            break;
-    }
-    return (NULL);
-}

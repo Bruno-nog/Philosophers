@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 19:25:28 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/12 13:55:05 by marvin           ###   ########.fr       */
+/*   Updated: 2025/05/12 19:33:28 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,35 @@
 
 bool	check_args(int ac, char **av)
 {
-	(void)av;
+	int	i;
+	int	k;
 
-	if (ac != 5 && ac != 6)
+	i = 0;
+	k = 1;
+	if (ac < 5 || ac > 6)
 	{
 		printf("Error, expected 5 or 6 arguments.\n");
-		return (1);
+		return (false);
 	}
-	return (0);
+	while (av[k] != NULL)
+	{
+		i = 0;
+		while (av[k][i])
+		{
+			if (ft_is_digit(av[k][i]))
+				return (false);
+			i++;
+		}
+		k++;
+	}
+	return (true);
+}
+
+bool	ft_is_digit(char s)
+{
+	if (s >= '0' && s <= '9')
+		return (false);
+	return (true);
 }
 
 long long get_time(void)

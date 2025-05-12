@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 19:01:38 by brunogue          #+#    #+#              #
-#    Updated: 2025/05/12 11:56:20 by marvin           ###   ########.fr        #
+#    Updated: 2025/05/12 19:33:52 by brunogue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philosophers
+NAME = philo
 
 CC = cc
 RM = rm -f
@@ -19,7 +19,8 @@ CFLAGS = -Wall -Wextra -Werror -pthread -g3
 INCLUDES_DIR = includes
 INCLUDES = -I$(INCLUDES_DIR)
 
-SRCS = srcs/main.c srcs/utils.c srcs/actions.c srcs/cleanup.c srcs/init.c srcs/print.c srcs/simulation.c srcs/threads.c srcs/threads2.c
+SRCS = srcs/main.c srcs/utils.c srcs/cleanup.c srcs/init.c srcs/threads.c srcs/threads2.c
+
 OBJS = $(SRCS:.c=.o)
 
 %.o: %.c

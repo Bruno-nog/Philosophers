@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:34:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/12 13:55:53 by marvin           ###   ########.fr       */
+/*   Updated: 2025/05/12 17:56:20 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ void	put_down_forks(t_thread *ph);
 int			ft_atoi(char *n);
 long long get_time(void);
 void	smart_sleep(long long duration, t_data *data);
+bool	ft_is_digit(char s);
 
 #endif
