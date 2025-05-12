@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:34:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/11 18:07:50 by marvin           ###   ########.fr       */
+/*   Updated: 2025/05/12 13:55:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,24 @@ typedef struct s_data
 bool	init_structs(int ac, char **av, t_data *data);
 bool	init_data(t_data *data);
 bool	check_args(int ac, char **av);
+bool check_death(t_thread *ph);
 void	*routine(void *arg);
 
 //ACTIONS.C
-//CLEANUP.C
 //PRINT.C
 //SIMULATION.C
+//CLEANUP.C
+void cleanup(t_data *data);
 
 //THREADS.G
 bool	start_threads(t_data *data);
 void	join_threads(t_data *data);
 void	print_status(t_thread *ph, const char *msg);
+void	pickup_forks(t_thread *ph);
+void	eat(t_thread *ph);
+
+//THREADS2.C
+void	put_down_forks(t_thread *ph);
 
 //UTILS.C
 int			ft_atoi(char *n);

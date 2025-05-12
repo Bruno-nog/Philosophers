@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 19:25:28 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/10 12:51:45 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/05/12 13:55:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+bool	check_args(int ac, char **av)
+{
+	(void)av;
+
+	if (ac != 5 && ac != 6)
+	{
+		printf("Error, expected 5 or 6 arguments.\n");
+		return (1);
+	}
+	return (0);
+}
 
 long long get_time(void)
 {

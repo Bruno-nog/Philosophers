@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:44:30 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/11 19:27:05 by marvin           ###   ########.fr       */
+/*   Updated: 2025/05/12 13:56:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,6 @@ bool	init_structs(int ac, char **av, t_data *data)
 	data->someone_died = false;
 	data->start_time = get_time();
 	return (true);
-}
-
-bool	check_args(int ac, char **av)
-{
-	(void)av;
-
-	if (ac != 5 && ac != 6)
-	{
-		printf("Error, expected 5 or 6 arguments.\n");
-		return (1);
-	}
-	return (0);
 }
 
 static void	fill_thread(t_data *data)
@@ -84,19 +72,34 @@ bool	init_data(t_data *data)
 	return (true);
 }
 
-void	*routine(void *arg)
+bool check_death(t_thread *ph)
 {
-	t_thread	*ph;
+    if (get_time() - ph->last_meal > ph->data->time_to_die)
+    {
+        print_status(ph, "died");
+        ph->data->someone_died = true;
+        return (true);
+    }
+    return (false);
+}
+
+void *routine(void *arg)
+{
+    t_thread *ph;
 
 	ph = arg;
-	while (!ph->data->someone_died)
-	{
-		print_status(ph, "is thinking");
-		pickup_forks(ph);
-		eat(ph);
-		put_down_forks(ph);
-		print_status(ph, "is sleeping");
-		smart_sleep(ph->data->time_to_sleep, ph->data);
-	}
-	return (NULL);
+    while (!ph->data->someone_died)
+    {
+        if (check_death(ph))
+            break;
+        print_status(ph, "is thinking");
+        pickup_forks(ph);
+        eat(ph);
+        put_down_forks(ph);
+        print_status(ph, "is sleeping");
+        smart_sleep(ph->data->time_to_sleep, ph->data);
+        if (check_death(ph))
+            break;
+    }
+    return (NULL);
 }
