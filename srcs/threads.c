@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:07:11 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/19 14:21:53 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/05/19 18:39:55 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ int	is_alive(t_data *data, int status)
 	if (status != 0)
 		data->someone_died = 1;
 	pthread_mutex_unlock(&data->lock);
-	return (old);	
+	return old;
+
 }
 
 void *routine(void *arg)

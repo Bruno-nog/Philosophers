@@ -30,18 +30,25 @@ void	join_threads(t_data *data)
 	}
 }
 
-void	print_status(t_thread *ph, const char *msg)
+void print_status(t_thread *ph, const char *msg)
 {
-	long long	ts;
+    long long ts;
+    t_data    *d = ph->data;
 
-	pthread_mutex_lock(&ph->data->print_mutex);
-	ts = get_time() - ph->data->start_time;
-	printf("%lld %d %s\n", ts, ph->id, msg);
-	pthread_mutex_unlock(&ph->data->print_mutex);
+    pthread_mutex_lock(&d->print_mutex);
+    // Imprime _apenas_ se ninguém morreu ainda (_old == 0_) ou é a mensagem "died"
+    if ( !is_alive(d, 0) || strcmp(msg, "died") == 0 )
+    {
+        ts = get_time() - d->start_time;
+        printf("%lld %d %s\n", ts, ph->id, msg);
+    }
+    pthread_mutex_unlock(&d->print_mutex);
 }
 
 void pickup_forks(t_thread *ph)
 {
+    if (check_death(ph))
+        return ;
     if (ph->id % 2)
     {
         pthread_mutex_lock(ph->l_fork);
@@ -62,6 +69,8 @@ void eat(t_thread *ph)
 {
     t_data *d = ph->data;
 
+    if (check_death(ph))
+		return ;
     pthread_mutex_lock(&d->print_mutex);
     ph->last_meal = get_time();
     pthread_mutex_unlock(&d->print_mutex);
