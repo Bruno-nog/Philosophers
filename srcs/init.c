@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:44:30 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/12 19:31:17 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/05/19 14:31:30 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,8 @@ bool check_death(t_thread *ph)
     if (get_time() - ph->last_meal > ph->data->time_to_die)
     {
         print_status(ph, "died");
-        ph->data->someone_died = true;
+        is_alive(ph->data, 1);
         return (true);
     }
     return (false);
 }
-

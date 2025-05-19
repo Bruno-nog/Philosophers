@@ -6,7 +6,7 @@
 #    By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 19:01:38 by brunogue          #+#    #+#              #
-#    Updated: 2025/05/12 19:33:52 by brunogue         ###   ########.fr        #
+#    Updated: 2025/05/19 12:27:02 by brunogue         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = philo
 CC = cc
 RM = rm -f
 
-CFLAGS = -Wall -Wextra -Werror -pthread -g3
+CFLAGS = -Wall -Wextra -Werror -pthread
 INCLUDES_DIR = includes
 INCLUDES = -I$(INCLUDES_DIR)
 

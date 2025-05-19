@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 19:25:28 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/12 19:33:28 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/05/19 14:29:54 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	smart_sleep(long long duration, t_data *data)
 	long long	start;
 
 	start = get_time();
-	while (!data->someone_died)
+	while (!is_alive(data, 0))
 	{
 		if (get_time() - start >= duration)
 			break ;

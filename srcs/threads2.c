@@ -67,6 +67,8 @@ void eat(t_thread *ph)
     pthread_mutex_unlock(&d->print_mutex);
 
     print_status(ph, "is eating");
+    pthread_mutex_lock(&d->meals_mutex);
     ph->meals_eaten++;
+    pthread_mutex_unlock(&d->meals_mutex);
     smart_sleep(d->time_to_eat, d);
 }

@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:07:11 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/12 17:34:42 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/05/19 14:21:53 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,39 +32,56 @@ bool	start_threads(t_data *data)
 static bool	all_ate(t_data *data)
 {
 	int	i;
+	int	eaten;
 
 	i = 0;
 	if (data->must_eat_count <= 0)
 		return (false);
 	while (i < data->nb_philos)
 	{
-		if (data->philos[i].meals_eaten < data->must_eat_count)
+		pthread_mutex_lock(&data->meals_mutex);
+		eaten = data->philos[i].meals_eaten;
+		pthread_mutex_unlock(&data->meals_mutex);
+		if (eaten < data->must_eat_count)
 			return (false);
 		i++;
 	}
 	return (true);
 }
 
+int	is_alive(t_data *data, int status)
+{
+	int	old;
+
+	pthread_mutex_lock(&data->lock);
+	old = data->someone_died;
+	if (status != 0)
+		data->someone_died = 1;
+	pthread_mutex_unlock(&data->lock);
+	return (old);	
+}
+
 void *routine(void *arg)
 {
-    t_thread *ph;
+    t_thread *ph = arg;
+    t_data   *d  = ph->data;
 
-	ph = arg;
-    while (!ph->data->someone_died)
+    while (!is_alive(d, 0))
     {
         if (check_death(ph))
-            break ;
+            break;
         print_status(ph, "is thinking");
         pickup_forks(ph);
         eat(ph);
         put_down_forks(ph);
-		if (all_ate(ph->data))
-		{
-			ph->data->someone_died = true;
-			break ;
-		}
+        if (all_ate(d))
+        {
+            is_alive(d, 1);
+            break;
+        }
         print_status(ph, "is sleeping");
-        smart_sleep(ph->data->time_to_sleep, ph->data);
+        smart_sleep(d->time_to_sleep, d);
+
         if (check_death(ph))
             break;
     }

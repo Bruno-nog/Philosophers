@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:34:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/12 17:56:20 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/05/19 14:12:34 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_data
 	long long		start_time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	lock;
+	pthread_mutex_t	meals_mutex;
 	t_thread		*philos;
 }	t_data;
 
@@ -54,7 +56,7 @@ typedef struct s_data
 bool	init_structs(int ac, char **av, t_data *data);
 bool	init_data(t_data *data);
 bool	check_args(int ac, char **av);
-bool check_death(t_thread *ph);
+bool	check_death(t_thread *ph);
 void	*routine(void *arg);
 
 //ACTIONS.C
@@ -69,6 +71,7 @@ void	join_threads(t_data *data);
 void	print_status(t_thread *ph, const char *msg);
 void	pickup_forks(t_thread *ph);
 void	eat(t_thread *ph);
+int		is_alive(t_data *data, int status);
 
 //THREADS2.C
 void	put_down_forks(t_thread *ph);
