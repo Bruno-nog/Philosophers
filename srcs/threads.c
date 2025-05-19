@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:07:11 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/19 18:39:55 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/05/19 19:38:09 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,25 @@ int	is_alive(t_data *data, int status)
 
 }
 
+static bool	single_philo(t_thread *ph)
+{
+	if (ph->data->nb_philos == 1)
+	{
+		print_status(ph, "has taken a fork");
+		smart_sleep(ph->data->time_to_die, ph->data);
+		print_status(ph, "died");
+		return (true);
+	}
+	return (false);
+}
+
 void *routine(void *arg)
 {
     t_thread *ph = arg;
     t_data   *d  = ph->data;
 
+	if (single_philo(ph))
+		return (NULL);
     while (!is_alive(d, 0))
     {
         if (check_death(ph))
