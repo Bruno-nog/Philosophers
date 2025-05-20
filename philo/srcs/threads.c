@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 18:07:11 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/19 19:38:09 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/05/20 13:45:52 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ bool	start_threads(t_data *data)
 	i = 0;
 	while (i < data->nb_philos)
 	{
-		if (pthread_create(&data->philos[i].thread, NULL, &routine, &data->philos[i]) != 0)
+		if (pthread_create(&data->philos[i].thread, NULL,
+				&routine, &data->philos[i]) != 0)
 		{
 			printf("Error creating thread %d\n", i + 1);
 			return (false);
@@ -58,8 +59,7 @@ int	is_alive(t_data *data, int status)
 	if (status != 0)
 		data->someone_died = 1;
 	pthread_mutex_unlock(&data->lock);
-	return old;
-
+	return (old);
 }
 
 static bool	single_philo(t_thread *ph)
@@ -74,31 +74,30 @@ static bool	single_philo(t_thread *ph)
 	return (false);
 }
 
-void *routine(void *arg)
+void	*routine(void *arg)
 {
-    t_thread *ph = arg;
-    t_data   *d  = ph->data;
+	t_thread	*ph;
 
+	ph = arg;
 	if (single_philo(ph))
 		return (NULL);
-    while (!is_alive(d, 0))
-    {
-        if (check_death(ph))
-            break;
-        print_status(ph, "is thinking");
-        pickup_forks(ph);
-        eat(ph);
-        put_down_forks(ph);
-        if (all_ate(d))
-        {
-            is_alive(d, 1);
-            break;
-        }
-        print_status(ph, "is sleeping");
-        smart_sleep(d->time_to_sleep, d);
-
-        if (check_death(ph))
-            break;
-    }
-    return (NULL);
+	while (!is_alive(ph->data, 0))
+	{
+		if (check_death(ph))
+			break ;
+		print_status(ph, "is thinking");
+		pickup_forks(ph);
+		eat(ph);
+		put_down_forks(ph);
+		if (all_ate(ph->data))
+		{
+			is_alive(ph->data, 1);
+			break ;
+		}
+		print_status(ph, "is sleeping");
+		smart_sleep(ph->data->time_to_sleep, ph->data);
+		if (check_death(ph))
+			break ;
+	}
+	return (NULL);
 }

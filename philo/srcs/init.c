@@ -6,7 +6,7 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 12:44:30 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/19 19:03:17 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/05/20 17:11:57 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ bool	init_structs(int ac, char **av, t_data *data)
 	data->time_to_sleep = ft_atoi(av[4]);
 	if (av[5])
 		data->must_eat_count = ft_atoi(av[5]);
-	if (data->nb_philos <= 0 || data->time_to_die <= 0 || data->time_to_die <= 0 || data->time_to_eat <= 0)
+	if (data->nb_philos <= 0 || data->time_to_die <= 0
+		|| data->time_to_die <= 0 || data->time_to_eat <= 0)
 	{
 		printf("Error: arguments must be more than 0\n");
 		return (1);
@@ -55,7 +56,7 @@ bool	init_data(t_data *data)
 	int	i;
 
 	i = 0;
-	data->forks = malloc(sizeof(pthread_mutex_t) * data->nb_philos);
+	data->forks = ft_calloc(data->nb_philos, sizeof(pthread_mutex_t));
 	if (!data->forks)
 		return (false);
 	while (i < data->nb_philos)
@@ -65,23 +66,9 @@ bool	init_data(t_data *data)
 	}
 	if (pthread_mutex_init(&data->print_mutex, NULL) != 0)
 		return (false);
-	data->philos = malloc(sizeof(t_thread) * data->nb_philos);
+	data->philos = ft_calloc(data->nb_philos, sizeof(t_thread));
 	if (!data->philos)
 		return (false);
 	fill_thread(data);
 	return (true);
-}
-
-bool check_death(t_thread *ph)
-{
-    if (get_time() - ph->last_meal > ph->data->time_to_die)
-    {
-		if (!is_alive(ph->data, 0))
-		{
-			print_status(ph, "died");
-			is_alive(ph->data, 1);
-		}
-        return (true);
-    }
-    return (false);
 }

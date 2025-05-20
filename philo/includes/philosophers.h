@@ -6,22 +6,22 @@
 /*   By: brunogue <brunogue@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:34:08 by brunogue          #+#    #+#             */
-/*   Updated: 2025/05/19 14:12:34 by brunogue         ###   ########.fr       */
+/*   Updated: 2025/05/20 13:54:47 by brunogue         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHERS_H
-#define PHILOSOPHERS_H
+# define PHILOSOPHERS_H
 
-#include <stdio.h>
-#include <unistd.h>
-#include <pthread.h>
-#include <string.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <sys/time.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <pthread.h>
+# include <string.h>
+# include <stdlib.h>
+# include <stdbool.h>
+# include <sys/time.h>
 
-typedef struct s_data t_data;
+typedef struct s_data	t_data;
 
 typedef struct s_thread
 {
@@ -50,36 +50,35 @@ typedef struct s_data
 	t_thread		*philos;
 }	t_data;
 
-
-
-//INIT.C
-bool	init_structs(int ac, char **av, t_data *data);
-bool	init_data(t_data *data);
-bool	check_args(int ac, char **av);
-bool	check_death(t_thread *ph);
-void	*routine(void *arg);
-
-//ACTIONS.C
-//PRINT.C
-//SIMULATION.C
-//CLEANUP.C
-void cleanup(t_data *data);
-
 //THREADS.G
-bool	start_threads(t_data *data);
-void	join_threads(t_data *data);
-void	print_status(t_thread *ph, const char *msg);
-void	pickup_forks(t_thread *ph);
-void	eat(t_thread *ph);
-int		is_alive(t_data *data, int status);
+bool		start_threads(t_data *data);
+int			is_alive(t_data *data, int status);
+void		*routine(void *arg);
 
 //THREADS2.C
-void	put_down_forks(t_thread *ph);
+void		put_down_forks(t_thread *ph);
+void		join_threads(t_data *data);
+void		print_status(t_thread *ph, const char *msg);
+void		pickup_forks(t_thread *ph);
+void		eat(t_thread *ph);
+
+//INIT.C
+bool		init_structs(int ac, char **av, t_data *data);
+bool		init_data(t_data *data);
 
 //UTILS.C
+long long	get_time(void);
+void		smart_sleep(long long duration, t_data *data);
+bool		check_death(t_thread *ph);
+bool		check_args(int ac, char **av);
+
+//UTILS2.C
+void		*ft_calloc(size_t nmemb, size_t size);
 int			ft_atoi(char *n);
-long long get_time(void);
-void	smart_sleep(long long duration, t_data *data);
-bool	ft_is_digit(char s);
+bool		ft_is_digit(char s);
+int			ft_strcmp(const char *s1, const char *s2);
+
+//CLEANUP.C
+void		cleanup(t_data *data);
 
 #endif
